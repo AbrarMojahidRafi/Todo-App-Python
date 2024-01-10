@@ -10,8 +10,16 @@ for i in todos:
     st.checkbox(f"{i[:-1]}")
 st.text_input("", placeholder="Enter new todo", key="TextBox")
 newTodo = st.session_state["TextBox"]
-# -------> when I reload the page, this file is executed
-# todos.append(f"{newTodo}\n")
-# functions.writingInTheTodos("todos.txt", todos)
 
-st.write(f"{todos}")
+
+def append_new_todo(new_todo):
+    todos.append(f"{new_todo}\n")
+    functions.writingInTheTodos("todos.txt", todos)
+    st.checkbox(f"{new_todo}")
+
+
+try:
+    append_new_todo(newTodo)
+except:
+    pass
+# st.write(f"{todos}")
